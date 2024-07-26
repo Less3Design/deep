@@ -1,16 +1,16 @@
 
-```
-WORK IN PROGRESS
-```
-```
-Requires Unity 2021.3+
-```
+![Frame 154](https://github.com/user-attachments/assets/524aedaf-f429-4c3e-a4aa-aeddddc3b482)
 
+Deep is an `Object Oriented` `Entity Component System` for the Unity game engine.
 
-# DeepAction
-An `object-oriented` `entity-component-system` for creating complex action games in Unity.
+Deep is **not** mega-performant, data-oriented, burst-compiled, multithreaded, cache-optomizied.....
 
-Entities behavior is defined entirely in c#
+Deep is designed for ease of content creation, re-useability, any (hopefully) simplicity.
+
+---
+
+This project is WIP. Here is an example of defining an entity:
+
 ```csharp
 //an entity is defined as a "template" which can be used to instantiate
 public static EntityTemplate ExampleEnemy()
@@ -37,56 +37,3 @@ public static EntityTemplate ExampleEnemy()
     return t;
 }
 ```
-
-## DeepEntity
-
-The core gameplay entity has Behaviors, Attributes, Flags, and Resources
-
-### DeepBehaviors
-
-A behavior is the replacement for MonoBehaviors that gets attached to entities. It has a Initialize/Destroy method that you can use to hook into the parent entities events.
-
-These events are things like: `Update`,`OnEnable`,`OnCollisionStay`. But also things like: `OnDealDamage`,`OnBounce`,`OnCast`.
-
-```csharp
-public class AreaDamageOnDeath : DeepBehavior
-{
-    private float radius;
-    private Damage damage;
-    private D_Team targetTeam;
-
-    public AreaDamageOnDeath(float radius, Damage damage, D_Team targetTeam)
-    {
-        this.radius = radius;
-        this.damage = damage;
-        this.targetTeam = targetTeam;
-    }
-
-    public override void InitializeBehavior()
-    {
-        parent.events.OnEntityDie += OnDie;
-    }
-
-    public override void DestroyBehavior()
-    {
-        parent.events.OnEntityDie -= OnDie;
-    }
-
-    private void OnDie()
-    {
-        DeepActions.AreaDamage(parent.transform.position, radius, damage, targetTeam);
-    }
-}
-```
-
-> TODO: explain attributes
-
-> TODO: explain resources
-
-## Goal
-The purpose of this is to create a really solid base that allows for a ton flexibility and freedom in design.
-Beyond freedom, a major goal is creating a system that is very FAST to work with.
-
-I find that doing a system like this through mono-behaviors is very messy and error prone (and a little less performant).
-
-Defining entity behaviors inside c# is both very fast and EXTREMLY flexible. Creating this kind of flexibility in an editor GUI is possible, but a huge waste of time imo.
