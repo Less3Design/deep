@@ -7,9 +7,6 @@ namespace DeepAction
     // I created this so that I can move ALL entities the same way. Projectiles, players, enemies, etc.
     public class DeepMovementBody : MonoBehaviour
     {
-        // if you have really fast projectiles, or lots of overlapping walls consider raising this.
-        private static int raycastPoolSize = 5;
-
         [HideInInspector]
         public DeepEntity entity;
 
@@ -26,7 +23,7 @@ namespace DeepAction
 
         private Vector2 _futurePosition;
         private RaycastHit2D _hit;
-        private RaycastHit2D[] _hitpool = new RaycastHit2D[raycastPoolSize];
+        private RaycastHit2D[] _hits;
 
         private void OnEnable()
         {
@@ -82,21 +79,21 @@ namespace DeepAction
             Vector2 velocityNormalized = velocity / Mathf.Sqrt(velocity.sqrMagnitude);
             do
             {
-                int hits = Physics2D.CircleCastNonAlloc(entity.cachedTransform.position, entity.attributes[D_Attribute.MovementRadius].value, velocityNormalized, _hitpool, frameDistance, Layers.entityWall);
+                _hits = Physics2D.CircleCastAll(entity.cachedTransform.position, entity.attributes[D_Attribute.MovementRadius].value, velocityNormalized, frameDistance, Layers.entityWall);
 
-                if (hits == 0)
+                if (_hits.Length == 0)
                 {
                     entity.cachedTransform.position = (Vector2)entity.cachedTransform.position + (velocityNormalized * frameDistance);
                     return;
                 }
 
                 float closestDist = Mathf.Infinity;
-                for (int i = 0; i < hits; i++)
+                for (int i = 0; i < _hits.Length; i++)
                 {
-                    if (_hitpool[i].distance < closestDist)
+                    if (_hits[i].distance < closestDist)
                     {
-                        _hit = _hitpool[i];
-                        closestDist = _hitpool[i].distance;
+                        _hit = _hits[i];
+                        closestDist = _hits[i].distance;
                     }
                 }
 
@@ -123,9 +120,9 @@ namespace DeepAction
             bool slideThisFrame = false;
             do
             {
-                int hits = Physics2D.CircleCastNonAlloc(entity.cachedTransform.position, entity.attributes[D_Attribute.MovementRadius].value, slideDir, _hitpool, frameDistance, Layers.entityWall);
+                _hits = Physics2D.CircleCastAll(entity.cachedTransform.position, entity.attributes[D_Attribute.MovementRadius].value, slideDir, frameDistance, Layers.entityWall);
 
-                if (hits == 0)
+                if (_hits.Length == 0)
                 {
                     entity.cachedTransform.position = (Vector2)entity.cachedTransform.position + (slideDir * frameDistance);
                     return slideThisFrame;
@@ -134,12 +131,12 @@ namespace DeepAction
                 slideThisFrame = true;
 
                 float closestDist = Mathf.Infinity;
-                for (int i = 0; i < hits; i++)
+                for (int i = 0; i < _hits.Length; i++)
                 {
-                    if (_hitpool[i].distance < closestDist)
+                    if (_hits[i].distance < closestDist)
                     {
-                        _hit = _hitpool[i];
-                        closestDist = _hitpool[i].distance;
+                        _hit = _hits[i];
+                        closestDist = _hits[i].distance;
                     }
                 }
 

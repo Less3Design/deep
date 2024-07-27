@@ -16,17 +16,11 @@ namespace DeepAction
         public int baseMax { get; private set; }
         public int currentMax { get; private set; }
 
-        [HideInInspector]
         public Action<int> onConsumeVal;
-        [HideInInspector]
         public Action onConsume;//sometimes you dont want the int....
-        [HideInInspector]
         public Action<int> onRegenVal;
-        [HideInInspector]
         public Action onRegen;
-        [HideInInspector]
         public Action onDeplete;
-        [HideInInspector]
         public Action onFill;
 
         private List<DeepResourceModifier> modifiers;
