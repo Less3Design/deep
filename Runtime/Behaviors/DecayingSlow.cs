@@ -11,7 +11,7 @@ namespace Deep
 
         private DeepViewLink viewRef;
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             speedMod = new DeepAttributeModifier(0f, modValue, 0f);
             parent.attributes[D_Attribute.MoveSpeed].AddModifier(speedMod);
@@ -31,7 +31,7 @@ namespace Deep
             parent.RemoveBehavior(this);
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.attributes[D_Attribute.MoveSpeed].RemoveModifer(speedMod);
             viewRef.StartReturn();

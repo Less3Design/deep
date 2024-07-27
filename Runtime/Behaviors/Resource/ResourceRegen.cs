@@ -18,7 +18,7 @@ namespace Deep
             _regenPerSec = regenPerSec;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             isFull = parent.resources[_resource].isFull;
             parent.resources[_resource].onConsume += CheckResource;
@@ -26,7 +26,7 @@ namespace Deep
             parent.events.UpdateNorm += Update;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.resources[_resource].onConsume -= CheckResource;
             parent.resources[_resource].onFill -= CheckResource;

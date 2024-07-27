@@ -11,12 +11,12 @@ namespace Deep
             vfxActions = vfx;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityEnable += OnEnable;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityEnable -= OnEnable;
         }

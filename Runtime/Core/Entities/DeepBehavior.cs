@@ -9,8 +9,8 @@ namespace Deep
         /// <summary>The entity that created this behavior. Behaviors added during Init are owned by the owner of the Entity.</summary>
         public DeepEntity owner;
 
-        public virtual void InitializeBehavior() { }
-        public virtual void DestroyBehavior() { }
+        public virtual void Init() { }
+        public virtual void Teardown() { }
 
         public DeepBehavior Clone()
         {

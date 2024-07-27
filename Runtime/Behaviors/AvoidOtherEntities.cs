@@ -25,12 +25,12 @@ namespace Deep
             avoidStrength = force;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityCollisionStay += Avoid;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityCollisionStay -= Avoid;
         }

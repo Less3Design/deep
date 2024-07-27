@@ -7,7 +7,7 @@ namespace Deep
     {
         public DeepAttributeModifier strMod = new DeepAttributeModifier(10f,0f,0f);
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.attributes[D_Attribute.Strength].AddModifier(strMod);
             parent.StartCoroutine(DestroyCo(parent));
@@ -19,7 +19,7 @@ namespace Deep
             parent.RemoveBehavior(this);
         }
         
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.attributes[D_Attribute.Strength].RemoveModifer(strMod);
         }

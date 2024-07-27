@@ -21,12 +21,12 @@ namespace Deep
 
         // TODO rework this such that we read on collision input etc...
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.UpdateNorm += OnUpdate;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= OnUpdate;
         }

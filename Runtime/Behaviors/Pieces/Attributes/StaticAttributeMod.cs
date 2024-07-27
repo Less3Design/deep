@@ -17,14 +17,14 @@ namespace Deep
             this.attributeModifier = attributeModifier;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             activeMod = new DeepAttributeModifier(attributeModifier);
             activeMod.owner = owner;
             parent.attributes[targetAttribute].AddModifier(activeMod);
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.attributes[targetAttribute].RemoveModifer(activeMod);
         }

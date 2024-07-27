@@ -25,7 +25,7 @@ namespace Deep
             this.views = views;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             for (int i = 0; i < views.Length; i++)
             {
@@ -40,7 +40,7 @@ namespace Deep
             parent.events.UpdateNorm += Update;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= Update;
             for (int i = 0; i < viewLinks.Length; i++)
@@ -51,7 +51,7 @@ namespace Deep
 
         private void Tick()
         {
-            parent.Hit(owner, damage);
+            new DamageAction(parent, owner, damage).Execute();
             ticks++;
 
             if (ticks >= totalTicks)

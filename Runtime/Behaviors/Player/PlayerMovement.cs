@@ -4,12 +4,12 @@ namespace Deep
 {
     public class PlayerMovement : DeepBehavior
     {
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.FixedUpdate += Move;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.FixedUpdate -= Move;
         }

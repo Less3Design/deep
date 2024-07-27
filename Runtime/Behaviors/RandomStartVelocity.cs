@@ -6,12 +6,12 @@ namespace Deep
 {
     public class RandomStartVelocity : DeepBehavior
     {
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityEnable += Move;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityEnable -= Move;
         }

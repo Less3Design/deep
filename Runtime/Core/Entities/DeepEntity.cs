@@ -14,28 +14,28 @@ namespace Deep
     //TODO: -------------------------------------------------------------------
 
     [RequireComponent(typeof(DeepMovementBody)), RequireComponent(typeof(Rigidbody2D))]
-    public class DeepEntity : MonoBehaviour, IHit
+    public class DeepEntity : MonoBehaviour
     {
         // * Views
         public List<DeepViewLink> views = new List<DeepViewLink>();
         // * Resources
-        public Dictionary<D_Resource, DeepResource> resources { get; private set; } = new Dictionary<D_Resource, DeepResource>();
+        public Dictionary<D_Resource, DeepResource> resources = new Dictionary<D_Resource, DeepResource>();
         // * Attributes
-        public Dictionary<D_Attribute, DeepAttribute> attributes { get; private set; } = new Dictionary<D_Attribute, DeepAttribute>();
+        public Dictionary<D_Attribute, DeepAttribute> attributes = new Dictionary<D_Attribute, DeepAttribute>();
         // * Flags
-        public Dictionary<D_Flag, DeepFlag> flags { get; private set; } = new Dictionary<D_Flag, DeepFlag>();
+        public Dictionary<D_Flag, DeepFlag> flags = new Dictionary<D_Flag, DeepFlag>();
         // * Behaviors
-        public List<DeepBehavior> behaviors { get; private set; } = new List<DeepBehavior>();
+        public List<DeepBehavior> behaviors = new List<DeepBehavior>();
         // * Events
         public DeepEntityEvents events = new DeepEntityEvents();
         // * Team
-        public D_Team team { get; private set; }
+        public D_Team team;
         // * Type
-        public D_EntityType type { get; private set; }
+        public D_EntityType type;
 
         // * Status
-        public bool dying { get; private set; }//entity will be killed(disabled) next LateUpdate()
-        public bool initialized { get; private set; }
+        public bool dying;
+        public bool initialized;
 
         // * Ownership
         public DeepEntity creator;
@@ -124,9 +124,6 @@ namespace Deep
             rb.velocity = Vector2.zero;
             mb.SetVelocity(Vector2.zero);
 
-            // Kill entity when health runs out
-            resources[D_Resource.Health].onDeplete += Die;
-
             initialized = true;
             //OnEnable gets called before this, so we need to initialize here when entities are created.
             App.state.game.RegisterEntity(this);
@@ -155,58 +152,6 @@ namespace Deep
         {
             dying = false;
             events.OnEntityDisable?.Invoke();
-        }
-
-        /// <summary>
-        /// Apply damage to an entity. Damage can be applied to ANY resource, but note that HEALTH directly affects
-        /// the life of an entity, and SHIELD will be consumed instead of HEALTH by default if possible. 
-        /// </summary>
-        public void Hit(params Damage[] hits)
-        {
-            Hit(null, hits);
-        }
-        public void Hit(DeepEntity damageDealer, params Damage[] hits)
-        {
-            foreach (Damage d in hits)
-            {
-                if (d.target == D_Resource.Health)
-                {
-                    //Shield absorption. Game dependant
-                    int sr = resources[D_Resource.Shield].Consume(d.damage);
-                    int hr = resources[D_Resource.Health].Consume(sr);
-                    int damageToHP = d.damage - hr;
-                    DamageNumbers(damageToHP, d.color);
-                    //todo use the right damage
-                    events.OnTakeDamage?.Invoke(damageToHP);
-                    damageDealer?.events.OnDealDamage?.Invoke(damageToHP);
-                    return;
-                }
-                resources[d.target].Consume(d.damage);
-            }
-        }
-
-        private void DamageNumbers(int num, Color color)
-        {
-            if (DeepVFX.Pull("damageNumbers", out VisualEffect vfx, out VFXEventAttribute att))
-            {
-                att.SetInt("num", num - 1);//custom att specific to damageNumbers.vfx
-                att.SetVector3("position", transform.position);
-                att.SetVector3("color", new Vector3(color.r, color.g, color.b));
-                att.SetFloat("spawnCount", 1);
-                vfx.SendEvent("OnPlay", att);
-            }
-        }
-
-        //todo consider adding a source entity to this.
-        public void Die()
-        {
-            if (dying)
-            {
-                return;
-            }
-
-            events.OnEntityDie?.Invoke();
-            dying = true;
         }
 
         public void RefreshColliderSize()

@@ -11,12 +11,12 @@ namespace Deep
             _force = force;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityDie += OnDeath;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityDie -= OnDeath;
         }

@@ -19,12 +19,12 @@ namespace Deep
             this.applyDublicates = applyDuplicates;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityDie += OnDie;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityDie -= OnDie;
         }

@@ -9,7 +9,7 @@ namespace Deep
         private DeepMovementBody mb;
         private float moveSpeed;
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             mb = parent.mb;
             parent.events.FixedUpdate += Move;
@@ -17,7 +17,7 @@ namespace Deep
             parent.attributes[D_Attribute.MoveSpeed].onValueChanged += UpdateMoveSpeed;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.attributes[D_Attribute.MoveSpeed].onValueChanged -= UpdateMoveSpeed;
             parent.events.FixedUpdate -= Move;

@@ -22,7 +22,7 @@ namespace Deep
             _duration = duration;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             attMod = new DeepAttributeModifier(_modBase);
             parent.attributes[_attribute].AddModifier(attMod);
@@ -45,7 +45,7 @@ namespace Deep
             parent.RemoveBehavior(this);
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.attributes[_attribute].RemoveModifer(attMod);
         }

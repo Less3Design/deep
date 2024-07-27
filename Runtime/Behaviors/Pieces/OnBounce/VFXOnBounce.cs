@@ -12,12 +12,12 @@ namespace Deep
             vfxActions = vfx;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnBounce += DoVFX;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnBounce -= DoVFX;
         }

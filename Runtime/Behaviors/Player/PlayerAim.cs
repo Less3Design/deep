@@ -4,12 +4,12 @@ namespace Deep
 {
     public class PlayerAim : DeepBehavior
     {
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.UpdateNorm += Aim;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= Aim;
         }

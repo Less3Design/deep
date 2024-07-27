@@ -8,12 +8,12 @@ namespace Deep
     {
         //if an entity collides and has artifact space, artifact is destroyed and entity gets +1 artifact
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityCollisionEnter += OnCollision;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityCollisionEnter -= OnCollision;
         }
@@ -24,15 +24,8 @@ namespace Deep
             {
                 return;
             }
-            parent.Die();
             DeepResource r = other.resources[D_Resource.Artifacts];
-            /*
-            if (r.currentMax > 0 && r.value < r.currentMax)
-            {
-                r.Regen(1);
-                parent.Die();
-            }
-            */
+            new KillAction(parent).Execute();
         }
     }
 }

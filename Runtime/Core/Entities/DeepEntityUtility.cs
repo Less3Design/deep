@@ -108,7 +108,7 @@ namespace Deep
             behavior.parent = e;
             behavior.owner = owner;
             e.behaviors.Add(behavior);
-            behavior.InitializeBehavior();
+            behavior.Init();
             if (behavior is DeepAbility a)
             {
                 e.abilities.Add(a);
@@ -121,7 +121,7 @@ namespace Deep
             foreach (T b in e.behaviors.OfType<T>())
             {
                 //the .contains is not neccesary if you are feeling brave
-                b.DestroyBehavior();
+                b.Teardown();
                 if (b is DeepAbility a && e.abilities.Contains(a))
                 {
                     e.abilities.Remove(a);
@@ -138,7 +138,7 @@ namespace Deep
             {
                 return false;
             }
-            b.DestroyBehavior();
+            b.Teardown();
             //the .contains is not neccesary if you are feeling brave
             if (b is DeepAbility a && e.abilities.Contains(a))
             {

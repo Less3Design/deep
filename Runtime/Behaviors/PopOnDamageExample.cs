@@ -25,14 +25,14 @@ namespace Deep
             this.targetTeam = targetTeam;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnTakeDamage += OnTakeDamage;
             parent.events.OnEntityDie += OnDie;
             viewRef = parent.AddView("PopView");
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnTakeDamage -= OnTakeDamage;
             parent.events.OnEntityDie -= OnDie;

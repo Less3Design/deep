@@ -20,12 +20,12 @@ namespace Deep
             this.template = template;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.UpdateNorm += Update;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= Update;
         }

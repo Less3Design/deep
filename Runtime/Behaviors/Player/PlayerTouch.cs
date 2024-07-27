@@ -16,11 +16,11 @@ namespace Deep
             _force = force;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityCollisionEnter += OnCollision;
         }
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityCollisionEnter -= OnCollision;
         }

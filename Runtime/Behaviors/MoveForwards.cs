@@ -6,13 +6,13 @@ namespace Deep
 {
     public class MoveForwards : DeepBehavior
     {
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.mb.SetVelocity(parent.transform.right * parent.attributes[D_Attribute.MoveSpeed].value);
             parent.events.UpdateNorm += Move;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= Move;
         }

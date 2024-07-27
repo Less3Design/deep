@@ -8,13 +8,13 @@ namespace Deep
     {
         public Dictionary<D_Resource, R> resources;
         public Dictionary<D_Attribute, A> attributes;
-        public DeepBehavior[] behaviors;
+        public List<DeepBehavior> behaviors;
         public D_Team team;
         public D_EntityType type;
         //Defining views in the template is optional. Sometimes its easier to define here, sometimes easier when creating entities.
         public string[] views;
 
-        public EntityTemplate(Dictionary<D_Resource, R> resources, Dictionary<D_Attribute, A> attributes, DeepBehavior[] behaviors, D_Team team, D_EntityType type, params string[] extraViews)
+        public EntityTemplate(Dictionary<D_Resource, R> resources, Dictionary<D_Attribute, A> attributes, List<DeepBehavior> behaviors, D_Team team, D_EntityType type, params string[] extraViews)
         {
             this.resources = resources;
             this.attributes = attributes;
@@ -23,10 +23,22 @@ namespace Deep
             this.type = type;
             this.views = extraViews;
         }
+
+        /// <summary>
+        /// Creates a basic template with a HealthObserver behavior
+        /// </summary>
+        public static EntityTemplate Base()
+        {
+            EntityTemplate template = new EntityTemplate();
+            template.resources = new Dictionary<D_Resource, R>();
+            template.attributes = new Dictionary<D_Attribute, A>();
+            template.behaviors = new List<DeepBehavior> { new HealthObserver() };
+            return template;
+        }
     }
 
     //resource template
-    public struct R//single letter to make defining a template really clean 
+    public struct R
     {
         public int baseMax { get; private set; }
         public int baseValue { get; private set; }

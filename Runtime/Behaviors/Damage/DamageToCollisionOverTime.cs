@@ -26,7 +26,7 @@ namespace Deep
             this.vfxActions = hitVFX;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             if (tickImmediatly)
             {
@@ -35,7 +35,7 @@ namespace Deep
             parent.events.UpdateNorm += Update;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.UpdateNorm -= Update;
         }
@@ -46,7 +46,7 @@ namespace Deep
             {
                 if (e.team == targetTeam && e.type == targetType)
                 {
-                    e.Hit(damage);
+                    new DamageAction(e, owner, damage).Execute();
                     foreach (DeepVFXAction action in vfxActions)
                     {
                         action.Execute(e.cachedTransform.position);

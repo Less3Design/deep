@@ -24,13 +24,13 @@ namespace Deep
             this.typeTarget = typeTarget;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityCollisionEnter += EntityEnter;
             parent.events.OnEntityCollisionExit += EntityExit;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             foreach (Tuple<DeepEntity, DeepBehavior> pair in containedEntities)
             {

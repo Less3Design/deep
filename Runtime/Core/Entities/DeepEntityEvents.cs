@@ -11,6 +11,7 @@ namespace Deep
         public Action OnEntityEnable;
         public Action OnEntityDisable;
         public Action OnEntityDie;
+        public Action<DeepEntity> OnKillEntity;
 
         // * Heartbeat
         /// <summary> Early is for more system-level tasks, You should avoid using it in behaviors </summary>

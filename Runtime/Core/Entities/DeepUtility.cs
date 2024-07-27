@@ -45,7 +45,7 @@ namespace Deep
             {
                 if (hit.TryGetComponent(out DeepEntity entity) && entity.team == targetTeam)
                 {
-                    entity.Hit(damage);
+                    new DamageAction(entity,owner,damage).Execute();
                 }
             }
             return hits.Length > 0;

@@ -23,12 +23,12 @@ namespace Deep
             this.zoneRadius = zoneRadius;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             coroutine = parent.StartCoroutine(WeaponCo());
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.StopCoroutine(coroutine);
         }

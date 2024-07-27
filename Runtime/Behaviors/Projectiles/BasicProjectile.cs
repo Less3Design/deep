@@ -13,12 +13,12 @@ namespace Deep
             _targetTeam = targetTeam;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             parent.events.OnEntityCollisionEnter += HandleCollision;
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             parent.events.OnEntityCollisionEnter -= HandleCollision;
         }
@@ -31,9 +31,9 @@ namespace Deep
                 {
                     if (_impactDamage > 0)
                     {
-                        e.Hit(new Damage(_impactDamage, Color.cyan));
+                        new DamageAction(e, owner, new Damage(_impactDamage, Color.cyan)).Execute();
                     }
-                    parent.Die();
+                    new KillAction(parent).Execute();
                     return;
                 }
             }

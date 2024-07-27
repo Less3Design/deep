@@ -15,13 +15,13 @@ namespace Deep
             this.time = time;
         }
 
-        public override void InitializeBehavior()
+        public override void Init()
         {
             waiting = false;
             coroutine = parent.StartCoroutine(WaitCo());
         }
 
-        public override void DestroyBehavior()
+        public override void Teardown()
         {
             if (waiting)
             {
@@ -33,7 +33,7 @@ namespace Deep
         {
             yield return new WaitForSeconds(time);
             waiting = false;
-            parent.Die();
+            new KillAction(parent).Execute();
         }
     }
 }
