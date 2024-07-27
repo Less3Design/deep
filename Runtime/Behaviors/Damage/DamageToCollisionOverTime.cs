@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Deep.VFX;
 
 namespace Deep
 {
@@ -10,20 +9,18 @@ namespace Deep
         public Damage damage;
         public float timeBetweenTicks;
         public bool tickImmediatly;
-        public DeepVFXAction[] vfxActions;
         public D_Team targetTeam;
         public D_EntityType targetType;
 
         private float timer;
 
-        public DamageToCollisionOverTime(Damage damage, float timeBetweenTicks, bool tickImmediatly, D_Team targetTeam, D_EntityType targetType, params DeepVFXAction[] hitVFX)
+        public DamageToCollisionOverTime(Damage damage, float timeBetweenTicks, bool tickImmediatly, D_Team targetTeam, D_EntityType targetType)
         {
             this.damage = damage;
             this.timeBetweenTicks = timeBetweenTicks;
             this.tickImmediatly = tickImmediatly;
             this.targetTeam = targetTeam;
             this.targetType = targetType;
-            this.vfxActions = hitVFX;
         }
 
         public override void Init()
@@ -47,10 +44,6 @@ namespace Deep
                 if (e.team == targetTeam && e.type == targetType)
                 {
                     new DamageAction(e, owner, damage).Execute();
-                    foreach (DeepVFXAction action in vfxActions)
-                    {
-                        action.Execute(e.cachedTransform.position);
-                    }
                 }
             }
         }
