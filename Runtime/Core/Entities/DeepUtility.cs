@@ -32,7 +32,7 @@ namespace Deep
             {
                 if (hit.TryGetComponent(out DeepEntity entity) && entity.team == targetTeam && (applyDublicates || !entity.HasBehavior(behavior.GetType())))
                 {
-                    entity.AddBehavior(behavior.Clone(), owner);
+                    new AddBehaviorAction(entity, owner, behavior.Clone()).Execute();
                 }
             }
             return hits.Length > 0;
@@ -45,7 +45,7 @@ namespace Deep
             {
                 if (hit.TryGetComponent(out DeepEntity entity) && entity.team == targetTeam)
                 {
-                    new DamageAction(entity,owner,damage).Execute();
+                    new DamageAction(entity, owner, damage).Execute();
                 }
             }
             return hits.Length > 0;

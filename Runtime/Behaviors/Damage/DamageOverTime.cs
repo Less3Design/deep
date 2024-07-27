@@ -56,7 +56,7 @@ namespace Deep
 
             if (ticks >= totalTicks)
             {
-                parent.RemoveBehavior(this);
+                new RemoveBehaviorAction(parent, owner, this).Execute();
             }
         }
 

@@ -42,7 +42,7 @@ namespace Deep
                 timer += Time.deltaTime;
                 yield return null;
             }
-            parent.RemoveBehavior(this);
+            new RemoveBehaviorAction(parent,owner,this).Execute();
         }
 
         public override void Teardown()

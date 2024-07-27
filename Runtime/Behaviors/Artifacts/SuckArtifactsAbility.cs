@@ -31,7 +31,11 @@ namespace Deep
             foreach (DeepEntity e in App.state.game.entityByTeamAndTypeLookup[D_Team.Enemy][D_EntityType.Actor])
             {
                 e.mb.AddForce((parent.transform.position - e.transform.position).normalized * -eStrength);
-                e.AddBehavior(new DecayingAttributeMod(D_Attribute.MoveSpeed, new ModValues(0f, -.9f, 0f), 3f), owner);
+                new AddBehaviorAction(
+                    e,
+                    owner,
+                    new DecayingAttributeMod(D_Attribute.MoveSpeed, new ModValues(0f, -0.9f, 0f), 3f)
+                ).Execute();
             }
         }
     }

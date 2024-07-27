@@ -46,7 +46,7 @@ namespace Deep
                 parent.StopCoroutine(co);
                 DeepUtility.AreaDamage(parent.transform.position, radius, new Damage(damage), owner, targetTeam);
                 new VFX.CirclePop(Color.red, radius).Execute(parent.transform.position);
-                parent.RemoveBehavior(this);
+                new RemoveBehaviorAction(parent, owner, this).Execute();
             }
         }
 
@@ -69,7 +69,7 @@ namespace Deep
             finished = true;
             DeepUtility.AreaDamage(parent.transform.position, radius, new Damage(damage), owner, targetTeam);
             new VFX.CirclePop(Color.red, radius).Execute(parent.transform.position);
-            parent.RemoveBehavior(this);
+            new RemoveBehaviorAction(parent, owner, this).Execute();
         }
     }
 }

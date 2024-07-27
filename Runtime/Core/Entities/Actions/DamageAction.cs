@@ -27,7 +27,7 @@ namespace Deep
             return this;
         }
 
-        public override void Execute()
+        public override void HandleExecute()
         {
             foreach (Damage d in damage)
             {

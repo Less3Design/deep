@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 using Deep.Views;
+using System.Linq;
 
 namespace Deep
 {
@@ -135,7 +136,14 @@ namespace Deep
             //add behaviors from template. We do this later so that coroutines will work.
             foreach (DeepBehavior b in template.behaviors)
             {
-                this.AddBehavior(b, owner != null ? owner : this);
+                b.parent = this;
+                b.owner = owner != null ? owner : this;
+                behaviors.Add(b);
+                b.Init();
+                if (b is DeepAbility a)
+                {
+                    abilities.Add(a);
+                }
             }
 
             //Important we do this after adding behaviors ^ 

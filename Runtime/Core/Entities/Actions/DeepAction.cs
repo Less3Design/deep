@@ -25,9 +25,22 @@ namespace Deep
             this.source = null;
         }
 
-        public abstract void Execute();
+        public DeepAction Execute()
+        {
+            this.HandleExecute();
+            Log();
+            return this;
+        }
 
-        public virtual DeepAction Log()// Used for debugging only
+        public abstract void HandleExecute();
+
+        public DeepAction SetSource(DeepEntity source)
+        {
+            this.source = source;
+            return this;
+        }
+
+        private DeepAction Log()// Used for debugging only
         {
             Debug.Log($"Action [{this.GetType().Name}] => [{(target != null ? target.name : "NULL")}]");
             return this;

@@ -15,7 +15,7 @@ namespace Deep
         public D_TeamSelector teamTarget;
         public D_EntityTypeSelector typeTarget;
 
-        private HashSet<Tuple<DeepEntity, DeepBehavior>> containedEntities = new HashSet<Tuple<DeepEntity, DeepBehavior>>();
+        private HashSet<Tuple<DeepEntity, DeepAction>> containedEntities = new HashSet<Tuple<DeepEntity, DeepAction>>();
 
         public BehaviorOnCollisionStay(DeepBehavior behavior, D_TeamSelector teamTarget = D_TeamSelector.All, D_EntityTypeSelector typeTarget = D_EntityTypeSelector.All)
         {
@@ -32,9 +32,9 @@ namespace Deep
 
         public override void Teardown()
         {
-            foreach (Tuple<DeepEntity, DeepBehavior> pair in containedEntities)
+            foreach (Tuple<DeepEntity, DeepAction> pair in containedEntities)
             {
-                pair.Item1.RemoveBehavior(pair.Item2);
+                pair.Item2.Execute();
             }
 
             parent.events.OnEntityCollisionEnter -= EntityEnter;
@@ -47,7 +47,12 @@ namespace Deep
             {
                 return;
             }
-            containedEntities.Add(new Tuple<DeepEntity, DeepBehavior>(e, e.AddBehavior(behavior.Clone(), owner)));
+            
+            //add the behavior and create a remove action we can execute later
+            AddBehaviorAction addAction = new AddBehaviorAction(e, owner, behavior.Clone());
+            DeepAction removeHandle = addAction.CreateRemoveAction(owner);
+            addAction.Execute();
+            containedEntities.Add(new Tuple<DeepEntity, DeepAction>(e, removeHandle));
         }
 
         private void EntityExit(DeepEntity e)
@@ -56,7 +61,7 @@ namespace Deep
 
             if (found != null)
             {
-                found.Item1.RemoveBehavior(found.Item2);
+                found.Item2.Execute();
                 containedEntities.Remove(found);
             }
         }

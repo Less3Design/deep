@@ -138,9 +138,9 @@ namespace Deep
                 DeepEntity entity = game.activeEntities[i];
                 if (entity.dying)
                 {
-                    for (int j = entity.behaviors.Count - 1; j >= 0; j--)
+                    while (entity.behaviors.Count > 0)
                     {
-                        entity.RemoveBehavior(entity.behaviors[j]);
+                        new RemoveBehaviorAction(entity,null,entity.behaviors[0]).Execute();
                     }
 
                     //remove any lingering views

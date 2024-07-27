@@ -11,7 +11,7 @@ namespace Deep
             this.lookDirection = lookDirection;
         }
 
-        public override void Execute()
+        public override void HandleExecute()
         {
             target.lookDirection = lookDirection;
             target.events.OnLookDirectionChanged?.Invoke(lookDirection);

@@ -16,7 +16,7 @@ namespace Deep
         IEnumerator DestroyCo(DeepEntity deepEntity)
         {
             yield return new WaitForSeconds(5f);
-            parent.RemoveBehavior(this);
+            new RemoveBehaviorAction(parent,owner,this).Execute();
         }
         
         public override void Teardown()

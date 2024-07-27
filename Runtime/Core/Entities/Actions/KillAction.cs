@@ -7,7 +7,7 @@ namespace Deep
         public KillAction(DeepEntity target) : base(target, null) { }
         public KillAction(DeepEntity target, DeepEntity source) : base(target, source) { }
 
-        public override void Execute()
+        public override void HandleExecute()
         {
             if (target.dying == true) return;
 
