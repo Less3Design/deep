@@ -1,7 +1,7 @@
 using UnityEngine;
-using DeepAction.VFX;
+using Deep.VFX;
 
-namespace DeepAction
+namespace Deep
 {
     public class VFXOnBounce : DeepBehavior
     {

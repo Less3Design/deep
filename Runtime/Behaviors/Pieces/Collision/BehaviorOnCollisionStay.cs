@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Apply behavior to all entities that collide with parent entity. Filter based on team and type. Behavior is always applied so things will stack.

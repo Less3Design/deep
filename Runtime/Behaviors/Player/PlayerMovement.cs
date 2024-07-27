@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     public class PlayerMovement : DeepBehavior
     {

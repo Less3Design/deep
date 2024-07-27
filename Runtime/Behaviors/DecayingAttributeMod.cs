@@ -4,7 +4,7 @@ using UnityEngine;
 
 //A generic example of the decaying slow
 
-namespace DeepAction
+namespace Deep
 {
     public class DecayingAttributeMod : DeepBehavior
     {

@@ -1,4 +1,4 @@
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// A flag is a boolean that changes how an entity behaves. flags are disabled by default

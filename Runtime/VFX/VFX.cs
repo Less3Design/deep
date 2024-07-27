@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace DeepAction.VFX
+namespace Deep.VFX
 {
     public abstract class DeepVFXAction
     {

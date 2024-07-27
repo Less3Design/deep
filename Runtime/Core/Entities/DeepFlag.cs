@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     // TODO: this is a bit of a stub.
     // flags are intended for things like "stunned" where they have a strict on/off state

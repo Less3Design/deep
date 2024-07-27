@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     [DefaultExecutionOrder(-500)]
     public class App : MonoBehaviour

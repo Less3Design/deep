@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// A resource is an int with a max value

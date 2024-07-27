@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DeepAction.Views
+namespace Deep.Views
 {
     public class RollAlongMovementBody : MonoBehaviour
     {

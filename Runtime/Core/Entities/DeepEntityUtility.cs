@@ -3,9 +3,9 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DeepAction.Views;
+using Deep.Views;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Extension methods and utilities for DeepEntity

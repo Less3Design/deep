@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     [Serializable]
     public class S_Game

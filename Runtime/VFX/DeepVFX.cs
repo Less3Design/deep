@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-namespace DeepAction
+namespace Deep
 {
     public class DeepVFX : MonoBehaviour
     {

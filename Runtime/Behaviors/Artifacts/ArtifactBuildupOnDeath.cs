@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// every time artifact buildup = 1 an artifact is created.

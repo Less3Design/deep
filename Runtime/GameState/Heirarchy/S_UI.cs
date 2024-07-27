@@ -1,6 +1,6 @@
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     [Serializable]
     public class S_UI

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Determines the "alignment" of the deepEntity. Use this when you want a behavior to only affect the player/enemies etc.

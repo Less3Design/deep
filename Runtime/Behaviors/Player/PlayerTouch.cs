@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     //TODO gotta rename this... idk
     public class PlayerTouch : DeepBehavior

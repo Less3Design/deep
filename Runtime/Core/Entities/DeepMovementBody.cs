@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Jobs;
 
-namespace DeepAction
+namespace Deep
 {
     // Can be substituted for simple rigidBody movement, or whatever you feel like.
     // I created this so that I can move ALL entities the same way. Projectiles, players, enemies, etc.

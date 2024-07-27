@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Contains all the events that a DeepEntity triggers. 

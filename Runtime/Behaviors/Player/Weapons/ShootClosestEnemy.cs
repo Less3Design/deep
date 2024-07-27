@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Creates an entity aimed at the closest entity to the player.

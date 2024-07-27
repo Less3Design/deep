@@ -1,6 +1,6 @@
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     public class ActionOnDamage : DeepBehavior
     {

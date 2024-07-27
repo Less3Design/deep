@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction.Views
+namespace Deep.Views
 {
     public class TrailView : MonoBehaviour
     {

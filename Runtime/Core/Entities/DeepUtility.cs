@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Contains lots of usefull static gameplay actions.

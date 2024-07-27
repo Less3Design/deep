@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
-using DeepAction.Views;
+using Deep.Views;
 
-namespace DeepAction
+namespace Deep
 {
     //TODO: -------------------------------------------------------------------
 

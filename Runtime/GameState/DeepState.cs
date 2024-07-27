@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DeepAction
+namespace Deep
 {
     [Serializable]
     public class DeepState<T>

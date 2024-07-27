@@ -1,4 +1,4 @@
-namespace DeepAction
+namespace Deep
 {
     public enum D_Attribute
     {

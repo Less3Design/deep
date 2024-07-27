@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace DeepAction
+namespace Deep
 {
     public class PoisonFieldsNearbyWeapon : DeepBehavior
     {

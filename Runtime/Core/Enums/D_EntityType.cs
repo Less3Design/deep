@@ -1,6 +1,6 @@
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     /// <summary>
     /// Use to determine how the entity is being used. For example certain behaviors might want to only affector actors, etc.

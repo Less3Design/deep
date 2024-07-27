@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-namespace DeepAction
+namespace Deep
 {
     public abstract class DeepBehavior
     {

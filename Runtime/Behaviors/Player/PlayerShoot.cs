@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     public class PlayerShoot : DeepAbility
     {

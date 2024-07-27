@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace DeepAction
+namespace Deep
 {
     [DefaultExecutionOrder(-400)]
     public class DeepManager : MonoBehaviour
