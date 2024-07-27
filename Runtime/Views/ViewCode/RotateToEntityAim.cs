@@ -8,7 +8,7 @@ namespace Deep.Views
 
         private void LateUpdate()
         {
-            transform.right = link.entity.aimDirection;
+            transform.right = link.entity.lookDirection;
         }
     }
 }

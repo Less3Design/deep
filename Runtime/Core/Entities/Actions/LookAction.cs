@@ -2,18 +2,19 @@ using UnityEngine;
 
 namespace Deep
 {
-    public class LookAction : MonoBehaviour
+    public class LookAction : DeepAction
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public Vector2 lookDirection { get; private set; }
+
+        public LookAction(DeepEntity target, Vector2 lookDirection) : base(target)
         {
-        
+            this.lookDirection = lookDirection;
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Execute()
         {
-        
+            target.lookDirection = lookDirection;
+            target.events.OnLookDirectionChanged?.Invoke(lookDirection);
         }
     }
 }

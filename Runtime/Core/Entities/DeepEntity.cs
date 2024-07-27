@@ -51,7 +51,7 @@ namespace Deep
         public Rigidbody2D rb { get; private set; }
         public CircleCollider2D col { get; private set; }
         public DeepMovementBody mb { get; private set; }
-        public Vector2 aimDirection { get; set; }
+        public Vector2 lookDirection { get; set; }
         public Transform cachedTransform { get; private set; }//slightly faster than mono.transform
 
         public Dictionary<Collider2D, DeepEntity> activeCollisions { get; private set; } = new Dictionary<Collider2D, DeepEntity>();
@@ -188,11 +188,6 @@ namespace Deep
             {
                 events.OnEntityCollisionExit?.Invoke(e);
             }
-        }
-
-        public void SetAimDirection(Vector2 aimDirection)
-        {
-            this.aimDirection = aimDirection;
         }
 
         //-----------------------------------

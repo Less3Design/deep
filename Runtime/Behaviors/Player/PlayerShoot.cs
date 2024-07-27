@@ -33,7 +33,7 @@ namespace Deep
                     parent,
                     parent.transform.position,
                     Quaternion.Euler(0f, 0f,
-                        Mathf.Atan2(parent.aimDirection.y, parent.aimDirection.x) *
+                        Mathf.Atan2(parent.lookDirection.y, parent.lookDirection.x) *
                         Mathf.Rad2Deg + Mathf.Sin((Time.time * 10f) + (float)i * Mathf.PI) * _inaccuracy * .5f)
                 );
             }
