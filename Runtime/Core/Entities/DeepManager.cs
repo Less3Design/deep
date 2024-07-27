@@ -27,11 +27,6 @@ namespace Deep
             gg.name = "ActiveEntities";
             gg.transform.parent = transform;
             activeEntityParent = gg.transform;
-
-            for (int i = 0; i < 100; i++)
-            {
-                CreateBaseEntity();
-            }
         }
 
         void Start()

@@ -61,9 +61,9 @@ namespace Deep
         /// </summary>
         public static DeepViewLink PullView(string viewName)
         {
-            if (DeepViewManager.instance.viewPool[viewName].Count < 1)
+            if (!instance.viewPool.ContainsKey(viewName) || instance.viewPool[viewName].Count < 1)
             {
-                DeepViewManager.instance.RegisterView(viewName, 1);
+                instance.RegisterView(viewName, 1);
             }
             DeepViewLink v = instance.viewPool[viewName][0];
             instance.viewPool[viewName].RemoveAt(0);

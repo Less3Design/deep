@@ -26,6 +26,7 @@ namespace Deep
         // * Flags
         public Dictionary<D_Flag, DeepFlag> flags = new Dictionary<D_Flag, DeepFlag>();
         // * Behaviors
+        [SerializeReference]
         public List<DeepBehavior> behaviors = new List<DeepBehavior>();
         // * Events
         public DeepEntityEvents events = new DeepEntityEvents();

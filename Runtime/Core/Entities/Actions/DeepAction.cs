@@ -11,6 +11,7 @@ namespace Deep
     {
         public DeepEntity target;
         public DeepEntity source;
+        public bool silent;
 
         // A source entity should always be filled in if possible, but is ultimately optional in most cases.
         public DeepAction(DeepEntity target, DeepEntity source)
@@ -28,7 +29,7 @@ namespace Deep
         public DeepAction Execute()
         {
             this.HandleExecute();
-            Log();
+            if (!silent) Log();
             return this;
         }
 

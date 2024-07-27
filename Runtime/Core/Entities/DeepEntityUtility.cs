@@ -100,18 +100,12 @@ namespace Deep
 
         public static DeepViewLink AddView(this DeepEntity entity, string view)
         {
-            if (!DeepViewManager.instance.viewPool.ContainsKey(view) && !DeepViewManager.instance.RegisterView(view))
+            DeepViewLink v = DeepViewManager.PullView(view);
+            if (v == null)
             {
-                Debug.LogError("Failed to add view to entity");
+                Debug.LogError("Unable to pull view: " + view);
                 return null;
             }
-
-            if (DeepViewManager.instance.viewPool[view].Count < 1)
-            {
-                DeepViewManager.instance.RegisterView(view, 1);
-            }
-
-            DeepViewLink v = DeepViewManager.PullView(view);
             v.transform.parent = entity.transform;
             v.transform.localPosition = Vector3.zero;
             v.transform.localRotation = Quaternion.identity;

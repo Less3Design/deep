@@ -12,7 +12,7 @@ namespace Deep
         public D_Team team;
         public D_EntityType type;
         //Defining views in the template is optional. Sometimes its easier to define here, sometimes easier when creating entities.
-        public string[] views;
+        public List<string> views;
 
         public EntityTemplate(Dictionary<D_Resource, R> resources, Dictionary<D_Attribute, A> attributes, List<DeepBehavior> behaviors, D_Team team, D_EntityType type, params string[] extraViews)
         {
@@ -21,7 +21,7 @@ namespace Deep
             this.behaviors = behaviors;
             this.team = team;
             this.type = type;
-            this.views = extraViews;
+            this.views = new List<string>(extraViews);
         }
 
         /// <summary>
@@ -33,6 +33,7 @@ namespace Deep
             template.resources = new Dictionary<D_Resource, R>();
             template.attributes = new Dictionary<D_Attribute, A>();
             template.behaviors = new List<DeepBehavior> { new HealthObserver() };
+            template.views = new List<string>();
             return template;
         }
     }

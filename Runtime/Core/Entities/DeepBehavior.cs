@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Deep
 {
+    [System.Serializable]
     public abstract class DeepBehavior
     {
         /// <summary>The entity this behavior is on.</summary>
