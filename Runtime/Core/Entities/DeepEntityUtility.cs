@@ -69,22 +69,9 @@ namespace Deep
         }
 
         //-----------------------------------
-        //            FLAGS
+        //            BEHAVIORS
         //-----------------------------------
 
-        public static bool SetupFlag(this DeepEntity e, D_Flag s)
-        {
-            if (e.flags.ContainsKey(s))
-            {
-                return false;
-            }
-            e.flags.Add(s, new DeepFlag());
-            return true;
-        }
-
-
-
-        //todo optimize this somehow
         public static bool HasBehavior(this DeepEntity e, Type behavior)
         {
             foreach (DeepBehavior b in e.behaviors)
@@ -96,10 +83,6 @@ namespace Deep
             }
             return false;
         }
-
-        //-----------------------------------
-        //            CASTING
-        //-----------------------------------
 
         public static bool TryToCast(this DeepEntity e, int index)
         {

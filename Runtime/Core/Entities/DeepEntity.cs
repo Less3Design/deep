@@ -119,7 +119,8 @@ namespace Deep
             //fill in flags (they are all false by default)
             foreach (D_Flag flag in Enum.GetValues(typeof(D_Flag)))
             {
-                this.SetupFlag(flag);
+                if (!flags.ContainsKey(flag))
+                    flags.Add(flag, new DeepFlag());
             }
 
             rb.velocity = Vector2.zero;
