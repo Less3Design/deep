@@ -25,7 +25,7 @@ namespace Deep
 
         // * Collision & Movement
         public Action<Vector2> OnBounce;//vec2 = bounce point
-        public Action<Vector2> OnLookDirectionChanged;
+        public Action<Vector2> OnLookDirectionChanged;//
 
         //pass through of the standard unity events
         public Action<Collider2D> OnTriggerEnter2D;
