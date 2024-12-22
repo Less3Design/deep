@@ -6,9 +6,15 @@ namespace Deep
 {
     public struct EntityTemplate
     {
+        public string entityName;
+        public string entityDescription;
         public Dictionary<D_Resource, R> resources;
         public Dictionary<D_Attribute, A> attributes;
         public List<DeepBehavior> behaviors;
+        public List<ItemInInventory> initialInventory;
+
+        public decimal inventoryVolume;
+
         public D_Team team;
         public D_EntityType type;
         //Defining views in the template is optional. Sometimes its easier to define here, sometimes easier when creating entities.
@@ -16,9 +22,15 @@ namespace Deep
 
         public EntityTemplate(Dictionary<D_Resource, R> resources, Dictionary<D_Attribute, A> attributes, List<DeepBehavior> behaviors, D_Team team, D_EntityType type, params string[] extraViews)
         {
+            this.entityName = "Unnamed Entity";
+            this.entityDescription = "Missing Description";
             this.resources = resources;
             this.attributes = attributes;
             this.behaviors = behaviors;
+            this.initialInventory = new List<ItemInInventory>();
+
+            this.inventoryVolume = 100M;
+
             this.team = team;
             this.type = type;
             this.views = new List<string>(extraViews);

@@ -13,6 +13,14 @@ namespace Deep
 
             target.dying = true;
 
+            if (target.type != D_EntityType.Item && target.inventory.items.Count > 0)
+            {
+                while (target.inventory.items.Count > 0)
+                {
+                    target.inventory.DropItemIntoWorld(0);
+                }
+            }
+
             source?.events.OnKillEntity?.Invoke(target);
             target.events.OnEntityDie.Invoke();
         }

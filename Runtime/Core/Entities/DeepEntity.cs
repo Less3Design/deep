@@ -28,6 +28,8 @@ namespace Deep
         // * Behaviors
         [SerializeReference]
         public List<DeepBehavior> behaviors = new List<DeepBehavior>();
+        // * Inventory
+        public DeepEntityInventory inventory { get; private set; }
         // * Events
         public DeepEntityEvents events = new DeepEntityEvents();
         // * Team
@@ -68,6 +70,8 @@ namespace Deep
 
             behaviors.Clear();
             abilities.Clear();
+
+            inventory = new DeepEntityInventory(this);
 
             if (rb == null)
             {
@@ -145,6 +149,14 @@ namespace Deep
                 if (b is DeepAbility a)
                 {
                     abilities.Add(a);
+                }
+            }
+
+            if (template.initialInventory != null)
+            {
+                foreach (ItemInInventory item in template.initialInventory)
+                {
+                    inventory.TryAddItem(item);
                 }
             }
 

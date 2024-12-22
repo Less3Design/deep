@@ -5,11 +5,11 @@ namespace Deep
     public class AvoidOtherEntities : DeepBehavior
     {
         //* Optimization settings.
-        private const int UPDATE_EVERY = 3;
+        private const int UPDATE_EVERY = 6;
         private const int MAX_COLLISIONS = 3;//how many valid collisions we consider per update.
 
-        public D_Team teamToAvoid;
-        public D_EntityType typeToAvoid;
+        public D_TeamSelector teamToAvoid;
+        public D_EntityTypeSelector typeToAvoid;
         public float avoidStrength;
 
         private Vector3 nudge;
@@ -18,7 +18,7 @@ namespace Deep
         private int frame;
         private float deltaTimeAcrossFrames;
 
-        public AvoidOtherEntities(D_Team team, D_EntityType type, float force)
+        public AvoidOtherEntities(D_TeamSelector team, D_EntityTypeSelector type, float force)
         {
             teamToAvoid = team;
             typeToAvoid = type;
@@ -46,14 +46,14 @@ namespace Deep
             frame++;
 
             nudge = Vector3.zero;
-            parentPos = parent.transform.position;
+            parentPos = parent.cachedTransform.position;
             float deltaStrength = deltaTimeAcrossFrames * avoidStrength;
             int i = 0;
             foreach (DeepEntity entity in parent.activeCollisions.Values)
             {
-                if (entity.team == teamToAvoid || entity.type == typeToAvoid)
+                if (teamToAvoid.HasTeam(entity.team) && typeToAvoid.HasEntityType(entity.type))
                 {
-                    dir = parentPos - entity.transform.position;
+                    dir = parentPos - entity.cachedTransform.position;
                     //slightly faster normalize. (we might run thousands per frame)
                     nudge += (dir / Mathf.Sqrt(dir.sqrMagnitude)) * deltaStrength;
                     i++;

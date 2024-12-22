@@ -16,6 +16,7 @@ namespace Deep
         Actor,//a player or enemy,
         Projectile,
         Structure,//generally stationary entities.
+        Item,
     }
 
     /// <summary>
@@ -32,6 +33,7 @@ namespace Deep
         Actor = 1 << 0,
         Projectile = 1 << 1,
         Structure = 1 << 2,
+        Item = 1 << 3,
     }
 
     public static class D_EntityTypeSelectorExensions
@@ -46,6 +48,8 @@ namespace Deep
                     return D_EntityTypeSelector.Projectile;
                 case D_EntityType.Structure:
                     return D_EntityTypeSelector.Structure;
+                case D_EntityType.Item:
+                    return D_EntityTypeSelector.Item;
             }
             return D_EntityTypeSelector.None;
         }

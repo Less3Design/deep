@@ -98,7 +98,7 @@ namespace Deep
         //            VIEWS
         //-----------------------------------
 
-        public static DeepViewLink AddView(this DeepEntity entity, string view)
+        public static DeepViewLink AddView(this DeepEntity entity, string view, Action<DeepViewLink> customViewInit = null)
         {
             DeepViewLink v = DeepViewManager.PullView(view);
             if (v == null)
@@ -110,6 +110,7 @@ namespace Deep
             v.transform.localPosition = Vector3.zero;
             v.transform.localRotation = Quaternion.identity;
             v.transform.localScale = Vector3.one;
+            customViewInit?.Invoke(v);
             v.gameObject.SetActive(true);
             v.Setup(entity, view);
             entity.RefreshColliderSize();
