@@ -15,10 +15,13 @@ namespace Deep
 
             if (target.type != D_EntityType.Item && target.inventory.items.Count > 0)
             {
+                // TODO fix inventory acting as weird array thing.
+                /*
                 while (target.inventory.items.Count > 0)
                 {
                     target.inventory.DropItemIntoWorld(0);
                 }
+                */
             }
 
             source?.events.OnKillEntity?.Invoke(target);
