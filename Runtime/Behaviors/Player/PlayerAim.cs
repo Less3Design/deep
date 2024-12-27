@@ -25,13 +25,13 @@ namespace Deep
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, Layers.mouseLayerMask))
             {
                 Vector2 currentLookDirection = parent.lookDirection;
-                Vector2 newLookDirection = new Vector2(hit.point.x, hit.point.y) - new Vector2(parent.transform.position.x, parent.transform.position.y);
+                Vector2 newLookDirection = new Vector2(hit.point.x, hit.point.y) - new Vector2(parent.cachedTransform.position.x, parent.cachedTransform.position.y);
                 //rotate to new look direction limited by max degrees per second
                 float newAngle = Vector2.Angle(currentLookDirection, newLookDirection);
                 float limitedAngle = Mathf.Min(_trackingSpeed * Time.deltaTime, newAngle);
                 Vector2 rotated = rotate(currentLookDirection, limitedAngle);
 
-                new LookAction(parent, rotated).Execute();
+                new LookAction(parent, rotated).ExecuteSilent();
             }
         }
         

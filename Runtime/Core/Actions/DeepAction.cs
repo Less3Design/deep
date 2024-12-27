@@ -26,6 +26,18 @@ namespace Deep
             this.source = null;
         }
 
+        public DeepAction SetSilent(bool silent)
+        {
+            this.silent = silent;
+            return this;
+        }
+
+        public DeepAction ExecuteSilent()
+        {
+            this.HandleExecute();
+            return this;
+        }
+
         public DeepAction Execute()
         {
             this.HandleExecute();
