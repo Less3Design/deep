@@ -22,7 +22,7 @@ namespace Deep
             }
 
             source?.events.OnKillEntity?.Invoke(target);
-            target.events.OnEntityDie.Invoke();
+            target.events.OnEntityDie?.Invoke();
         }
     }
 }
