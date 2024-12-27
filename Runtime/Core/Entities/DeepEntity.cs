@@ -131,6 +131,8 @@ namespace Deep
             rb.velocity = Vector2.zero;
             mb.SetVelocity(Vector2.zero);
 
+            lookDirection = Vector2.right;
+
             initialized = true;
             //OnEnable gets called before this, so we need to initialize here when entities are created.
             App.state.game.RegisterEntity(this);
